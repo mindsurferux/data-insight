@@ -1,13 +1,43 @@
 <div class="login-container">
   <div class="login-box">
-    <div class="wireframe-box">
-      <h1>LOGIN</h1>
-      <div class="form-wireframe">
-        <div class="input-box">Email Input</div>
-        <div class="input-box">Password Input</div>
-        <div class="button-box">Login Button</div>
+    <div class="login-card">
+      <div class="login-header">
+        <h1>DATA INSIGHT</h1>
+        <p>Acceso al Sistema</p>
       </div>
-      <p class="login-footer">Formulario de acceso a la aplicación</p>
+      
+      <div class="login-content">
+        <p class="login-subtitle">Selecciona tu usuario para acceder</p>
+        
+        <div class="user-buttons">
+          <button class="user-btn" (click)="loginAs('luis')">
+            <div class="user-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="user-info">
+              <h3>Luis</h3>
+              <p>Administrador</p>
+              <span class="badge">Acceso Total</span>
+            </div>
+          </button>
+          
+          <button class="user-btn" (click)="loginAs('ana')">
+            <div class="user-icon">
+              <i class="fas fa-user-edit"></i>
+            </div>
+            <div class="user-info">
+              <h3>Ana</h3>
+              <p>Editor</p>
+              <span class="badge">Acceso Limitado</span>
+            </div>
+          </button>
+        </div>
+        
+        <div class="dev-notice">
+          <i class="fas fa-info-circle"></i>
+          <p>Modo desarrollo - Acceso sin contraseña</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,137 @@
+.module-nav-container {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.nav-header i {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.nav-header h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  color: var(--text-secondary);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  overflow: hidden;
+}
+
+/* Microinteracción: Hover */
+.nav-tab:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding-left: 1.75rem;
+}
+
+.nav-tab.active-hover {
+  background-color: rgba(48, 48, 48, 0.5);
+}
+
+/* Estado Activo - Color sincronizado con canvas */
+.nav-tab.active {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-left-color: var(--accent-color);
+  font-weight: 500;
+}
+
+.nav-tab i {
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+/* Microinteracción: Icono scale en hover */
+.nav-tab:hover i {
+  transform: scale(1.15);
+}
+
+.nav-tab.active i {
+  transform: scale(1.1);
+}
+
+.nav-tab span {
+  flex: 1;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
+}
+
+/* Indicador visual de tab activa */
+.tab-indicator {
+  position: absolute;
+  right: 1rem;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.nav-tab.active .tab-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Microinteracción: Pulse animation en tab activa */
+.nav-tab.active .tab-indicator {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.3);
+  }
+}
+
+/* Efecto ripple sutil */
+.nav-tab::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-tab:hover::before {
+  width: 100%;
+}

@@ -257,7 +257,90 @@ php artisan make:controller  # Crear controlador
 
 ---
 
+## Sistema de Autenticación y Dashboard
+
+### Usuarios Mock
+
+El sistema actualmente utiliza autenticación mock para desarrollo:
+
+| Usuario | Rol | Permisos |
+|---------|-----|----------|
+| **Luis** | Administrador | Proyectos ✅ CMS ✅ Ciberseguridad ✅ |
+| **Ana** | Editor | Proyectos ✅ CMS ✅ Ciberseguridad ❌ |
+
+### Flujo de Login
+
+1. Usuario accede a `/login`
+2. Selecciona su perfil (Luis o Ana)
+3. Sistema muestra alert de desarrollo
+4. AuthService crea sesión mock
+5. Redirección automática a `/dashboard`
+
+### Dashboard
+
+**Estructura:** Sidebar fijo + Área de contenido
+
+#### Sidebar
+- **Header:** Logo y título "DATA INSIGHT"
+- **Usuario:** Avatar, nombre y email del usuario actual
+- **Navegación:** Tabs dinámicos según permisos
+  - Proyectos (icon: project-diagram)
+  - CMS (icon: edit)
+  - Ciberseguridad (icon: shield-alt)
+- **Footer:** Botones "Ir al Sitio" y "Cerrar Sesión"
+
+#### Módulos (Tabs)
+
+Todos los módulos están actualmente en estado "En Construcción":
+
+**Proyectos**
+- Vista centrada con icono y mensaje
+- Fondo: `var(--bg-tertiary)`
+
+**CMS**
+- Vista centrada con icono y mensaje
+- Fondo: `var(--bg-tertiary)`
+
+**Ciberseguridad**
+- Vista centrada con icono y mensaje
+- Fondo: `var(--bg-tertiary)`
+- Solo visible para usuarios con permiso
+
+### AuthService
+
+**Ubicación:** `services/auth.service.ts`
+
+**Métodos:**
+- `login(username)`: Autenticación mock
+- `logout()`: Cierra sesión y limpia localStorage
+- `isAuthenticated()`: Verifica si hay sesión activa
+- `hasPermission(module)`: Verifica permisos por módulo
+- `currentUser`: Signal con datos del usuario actual
+
+### Rutas del Dashboard
+
+```
+/dashboard
+├── /proyectos          # Módulo Proyectos
+├── /cms                # Módulo CMS
+└── /ciberseguridad     # Módulo Ciberseguridad
+```
+
+**Redirect por defecto:** `/dashboard` → `/dashboard/proyectos`
+
+---
+
 ## Historial de Cambios
+
+### v0.2.0 - Noviembre 2024
+- ✅ Sistema de autenticación mock implementado
+- ✅ Login con dos usuarios (Luis y Ana)
+- ✅ Dashboard con sidebar tipo offcanvas
+- ✅ Navegación por tabs (Proyectos, CMS, Ciberseguridad)
+- ✅ Sistema de permisos por usuario
+- ✅ Vistas "En Construcción" para módulos
+- ✅ AuthService con signals de Angular
+- ✅ Routing del dashboard configurado
 
 ### v0.1.0 - Noviembre 2024
 - ✅ Estructura base del proyecto creada

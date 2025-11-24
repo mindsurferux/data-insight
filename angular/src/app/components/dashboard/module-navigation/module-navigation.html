@@ -1,0 +1,44 @@
+<nav class="module-nav-container">
+  <div class="nav-header">
+    <i class="fas fa-th-large"></i>
+    <h3>Módulos</h3>
+  </div>
+  
+  <div class="nav-tabs">
+    <a *ngIf="hasPermission('proyectos')"
+       routerLink="/dashboard/proyectos"
+       routerLinkActive="active"
+       class="nav-tab"
+       [class.active-hover]="isHovered === 'proyectos'"
+       (mouseenter)="isHovered = 'proyectos'"
+       (mouseleave)="isHovered = null">
+      <i class="fas fa-project-diagram"></i>
+      <span>Proyectos</span>
+      <div class="tab-indicator"></div>
+    </a>
+    
+    <a *ngIf="hasPermission('cms')"
+       routerLink="/dashboard/cms"
+       routerLinkActive="active"
+       class="nav-tab"
+       [class.active-hover]="isHovered === 'cms'"
+       (mouseenter)="isHovered = 'cms'"
+       (mouseleave)="isHovered = null">
+      <i class="fas fa-edit"></i>
+      <span>CMS</span>
+      <div class="tab-indicator"></div>
+    </a>
+    
+    <a *ngIf="hasPermission('ciberseguridad')"
+       routerLink="/dashboard/ciberseguridad"
+       routerLinkActive="active"
+       class="nav-tab"
+       [class.active-hover]="isHovered === 'ciberseguridad'"
+       (mouseenter)="isHovered = 'ciberseguridad'"
+       (mouseleave)="isHovered = null">
+      <i class="fas fa-shield-alt"></i>
+      <span>Ciberseguridad</span>
+      <div class="tab-indicator"></div>
+    </a>
+  </div>
+</nav>

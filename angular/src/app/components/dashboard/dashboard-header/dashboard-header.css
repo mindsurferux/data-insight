@@ -1,0 +1,119 @@
+.dashboard-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Microinteracción: Hover */
+.dashboard-header:hover {
+  background-color: var(--bg-tertiary);
+  border-bottom-color: var(--accent-color);
+}
+
+.dashboard-header.header-hover {
+  background-color: rgba(48, 48, 48, 0.5);
+}
+
+/* Estado activo cuando está en /dashboard/resumen */
+.dashboard-header.header-active {
+  background-color: var(--bg-tertiary);
+  border-bottom-color: var(--accent-color);
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-header:hover .header-icon {
+  background-color: var(--accent-color);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.header-icon i {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.dashboard-header:hover .header-icon i {
+  color: var(--text-primary);
+}
+
+.header-content {
+  flex: 1;
+}
+
+.header-content h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.dashboard-header:hover .header-content h1 {
+  color: var(--text-primary);
+}
+
+.header-content p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.dashboard-header:hover .header-content p {
+  color: var(--text-secondary);
+}
+
+.header-indicator {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.dashboard-header:hover .header-indicator {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.header-indicator i {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+/* Efecto ripple */
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-50%);
+  transition: width 0.4s ease;
+}
+
+.dashboard-header:hover::before {
+  width: 100%;
+}
+
+/* Click feedback */
+.dashboard-header:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,26 @@
+<div class="summary-panel" 
+     (click)="openSummary()" 
+     [class.panel-hover]="isHovered"
+     (mouseenter)="isHovered = true"
+     (mouseleave)="isHovered = false">
+  <div class="summary-header">
+    <i class="fas fa-chart-pie"></i>
+    <h3>Resumen General</h3>
+  </div>
+  <div class="summary-content">
+    <div class="summary-stats">
+      <div class="stat-item">
+        <span class="stat-value">--</span>
+        <span class="stat-label">Proyectos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">--</span>
+        <span class="stat-label">Tareas</span>
+      </div>
+    </div>
+    <div class="summary-action">
+      <span>Ver detalle</span>
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="proyecto-nav-container">
+  <!-- Header del Módulo (Clickeable) -->
+  <div class="module-header" 
+       routerLink="/dashboard/proyectos/reportes"
+       routerLinkActive="header-active"
+       [class.header-hover]="isHeaderHovered"
+       (mouseenter)="isHeaderHovered = true"
+       (mouseleave)="isHeaderHovered = false">
+    <div class="header-icon">
+      <i class="fas fa-project-diagram"></i>
+    </div>
+    <div class="header-content">
+      <h3>MÓDULO PROYECTOS</h3>
+    </div>
+    <div class="header-indicator">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+  
+  <!-- Tabs de Proyectos -->
+  <div class="proyecto-tabs">
+    <div class="tabs-label">
+      <i class="fas fa-folder"></i>
+      <span>PROYECTOS</span>
+    </div>
+    
+    <a class="proyecto-tab"
+       *ngFor="let proyecto of proyectos"
+       [routerLink]="['/dashboard/proyectos', proyecto.id]"
+       routerLinkActive="tab-active"
+       [class.tab-hover]="hoveredProyecto === proyecto.id"
+       (mouseenter)="hoveredProyecto = proyecto.id"
+       (mouseleave)="hoveredProyecto = null">
+      <i [class]="proyecto.icon"></i>
+      <span>{{ proyecto.nombre }}</span>
+      <div class="tab-indicator"></div>
+    </a>
+  </div>
+</div>

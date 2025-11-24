@@ -1,0 +1,62 @@
+<div class="dashboard-container">
+  
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    
+    <!-- Header del Sidebar: Título Dashboard (ZONA NARANJA - Clickeable) -->
+    <app-dashboard-header></app-dashboard-header>
+    
+    <!-- Usuario Actual -->
+    <div class="user-section">
+      <div class="user-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="user-details">
+        <p class="user-name">{{ currentUser()?.name }}</p>
+        <p class="user-email">{{ currentUser()?.email }}</p>
+      </div>
+    </div>
+    
+    <!-- Navegación de Módulos -->
+    <app-module-navigation></app-module-navigation>
+    
+    <!-- Footer del Sidebar -->
+    <div class="sidebar-footer">
+      <a routerLink="/" class="footer-btn">
+        <i class="fas fa-home"></i>
+        <span>Ir al Sitio</span>
+      </a>
+      
+      <button (click)="logout()" class="footer-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </aside>
+  
+  <!-- Main Content Area (ZONA VERDE - Canvas) -->
+  <main class="main-content">
+    <!-- Barra de Filtros (Inhabilitada) -->
+    <div class="filters-bar">
+      <div class="filters-container">
+        <div class="filter-item disabled" title="Filtros próximamente">
+          <i class="fas fa-filter"></i>
+          <span>Filtros</span>
+        </div>
+        <div class="filter-item disabled" title="Ordenar próximamente">
+          <i class="fas fa-sort"></i>
+          <span>Ordenar</span>
+        </div>
+        <div class="filter-item disabled" title="Buscar próximamente">
+          <i class="fas fa-search"></i>
+          <span>Buscar</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Canvas Principal - Aquí se cargan los parciales -->
+    <div class="content-canvas" [attr.data-module]="activeModule">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
