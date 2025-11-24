@@ -57,8 +57,10 @@ export class ProyectoVistaNav implements OnInit, OnChanges {
     }
     
     // Cargar vistas disponibles según privilegios del proyecto
-    this.vistas = this.privilegesService.getAvailableViews(this.projectId);
-    console.log('ProyectoVistaNav - Vistas cargadas:', this.vistas.length, this.vistas);
+    // EXCLUIR "resumen" del listado (está asociado al header, no es vista operativa)
+    const allViews = this.privilegesService.getAvailableViews(this.projectId);
+    this.vistas = allViews.filter(v => v.id !== 'resumen');
+    console.log('ProyectoVistaNav - Vistas operativas cargadas:', this.vistas.length, this.vistas);
   }
   
   toggle(): void {
