@@ -40,6 +40,17 @@
       </button>
     </div>
     
+    <!-- Footer Colapsado -->
+    <div class="sidebar-footer-collapsed" *ngIf="navState.isCollapsed()">
+      <a routerLink="/" class="footer-icon-btn" title="Ir al Sitio">
+        <i class="fas fa-home"></i>
+      </a>
+      
+      <button (click)="logout()" class="footer-icon-btn" title="Cerrar Sesión">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+    
     <!-- Botón Toggle Bottom -->
     <button class="nav-toggle-bottom" 
             (click)="navState.toggle()"

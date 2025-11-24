@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { ProyectoNavState } from '../services/proyecto-nav-state';
 import { PrivilegesService } from '../../../services/privileges';
+import { NavigationStateService } from '../../../services/navigation-state.service';
 import { ProjectPrivilege } from '../../../models/privileges.model';
 
 @Component({
@@ -21,6 +22,7 @@ export class ProyectoNav implements OnInit {
   constructor(
     public navState: ProyectoNavState,
     private privilegesService: PrivilegesService,
+    private navigationStateService: NavigationStateService,
     private router: Router
   ) {
     // Inicializar isCollapsed
@@ -33,7 +35,8 @@ export class ProyectoNav implements OnInit {
   ngOnInit(): void {}
   
   onProyectoClick(): void {
-    // El auto-collapse se maneja en el router subscription
+    // Trigger: expande proyectos y vistas, colapsa dashboard
+    this.navigationStateService.onProjectClick();
   }
   
   toggleNav(): void {

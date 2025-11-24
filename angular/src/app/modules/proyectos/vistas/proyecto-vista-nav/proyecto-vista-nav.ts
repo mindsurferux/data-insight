@@ -1,7 +1,8 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { PrivilegesService } from '../../../../services/privileges';
+import { NavigationStateService } from '../../../../services/navigation-state.service';
 import { ViewPrivilege } from '../../../../models/privileges.model';
 
 @Component({
@@ -11,7 +12,7 @@ import { ViewPrivilege } from '../../../../models/privileges.model';
   styleUrls: ['./proyecto-vista-nav.css']
 })
 export class ProyectoVistaNav implements OnInit {
-  isCollapsed = signal<boolean>(false);
+  isCollapsed = computed(() => this.navStateService.vistasState());
   hoveredVista: string | null = null;
   isHeaderHovered: boolean = false;
   vistas: ViewPrivilege[] = [];
@@ -21,6 +22,7 @@ export class ProyectoVistaNav implements OnInit {
   
   constructor(
     private privilegesService: PrivilegesService,
+    private navStateService: NavigationStateService,
     private route: ActivatedRoute
   ) {}
   
@@ -44,6 +46,11 @@ export class ProyectoVistaNav implements OnInit {
   }
   
   toggle(): void {
-    this.isCollapsed.set(!this.isCollapsed());
+    this.navStateService.toggleVistas();
+  }
+
+  onViewClick(): void {
+    // Trigger: expande vistas, colapsa dashboard y proyectos
+    this.navStateService.onViewClick();
   }
 }

@@ -1,21 +1,23 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, computed } from '@angular/core';
+import { NavigationStateService } from '../../../services/navigation-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProyectoNavState {
-  // Signal para manejar el estado colapsado/expandido
-  isCollapsed = signal<boolean>(false);
-
+  constructor(private navStateService: NavigationStateService) {}
+  
+  isCollapsed = computed(() => this.navStateService.proyectosState());
+  
   toggle(): void {
-    this.isCollapsed.set(!this.isCollapsed());
+    this.navStateService.toggleProyectos();
   }
-
+  
   collapse(): void {
-    this.isCollapsed.set(true);
+    // Implementado a través del servicio centralizado
   }
-
+  
   expand(): void {
-    this.isCollapsed.set(false);
+    // Implementado a través del servicio centralizado
   }
 }

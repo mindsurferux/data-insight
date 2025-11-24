@@ -32,6 +32,7 @@
        routerLinkActive="tab-active"
        [class.tab-hover]="hoveredVista === vista.id"
        [attr.title]="isCollapsed() ? vista.name : ''"
+       (click)="onViewClick()"
        (mouseenter)="hoveredVista = vista.id"
        (mouseleave)="hoveredVista = null">
       <i [class]="vista.icon"></i>

@@ -31,6 +31,7 @@
        routerLinkActive="tab-active"
        [class.tab-hover]="hoveredProyecto === proyecto.id"
        [attr.title]="isCollapsed() ? proyecto.name : ''"
+       (click)="onProyectoClick()"
        (mouseenter)="hoveredProyecto = proyecto.id"
        (mouseleave)="hoveredProyecto = null">
       <i [class]="proyecto.icon"></i>

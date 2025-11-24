@@ -11,6 +11,7 @@
        class="nav-tab"
        [class.active-hover]="isHovered === module.id"
        [attr.title]="navState.isCollapsed() ? module.name : ''"
+       (click)="onModuleClick()"
        (mouseenter)="isHovered = module.id"
        (mouseleave)="isHovered = null">
       <i [class]="module.icon"></i>
