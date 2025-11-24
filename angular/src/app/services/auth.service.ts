@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, MOCK_USERS } from '../models/user.model';
+import { PrivilegesService } from './privileges';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,17 @@ export class AuthService {
   private currentUserSignal = signal<User | null>(null);
   currentUser = this.currentUserSignal.asReadonly();
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private privilegesService: PrivilegesService
+  ) {
     // Cargar usuario de localStorage si existe
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
-      this.currentUserSignal.set(JSON.parse(savedUser));
+      const user = JSON.parse(savedUser);
+      this.currentUserSignal.set(user);
+      // Cargar privilegios del usuario
+      this.privilegesService.loadUserPrivileges(user.name.toLowerCase());
     }
   }
 
@@ -26,6 +33,10 @@ export class AuthService {
     if (user) {
       this.currentUserSignal.set(user);
       localStorage.setItem('currentUser', JSON.stringify(user));
+      
+      // Cargar privilegios del usuario
+      this.privilegesService.loadUserPrivileges(username.toLowerCase());
+      
       return true;
     }
     
@@ -38,6 +49,7 @@ export class AuthService {
   logout(): void {
     this.currentUserSignal.set(null);
     localStorage.removeItem('currentUser');
+    this.privilegesService.clearPrivileges();
     this.router.navigate(['/']);
   }
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { PrivilegesService } from '../../../services/privileges';
 import { DashboardNavState } from '../services/dashboard-nav-state';
+import { ModulePrivilege } from '../../../models/privileges.model';
 
 @Component({
   selector: 'app-module-navigation',
@@ -12,13 +13,13 @@ import { DashboardNavState } from '../services/dashboard-nav-state';
 })
 export class ModuleNavigation {
   isHovered: string | null = null;
+  modules: ModulePrivilege[] = [];
 
   constructor(
-    private authService: AuthService,
+    private privilegesService: PrivilegesService,
     public navState: DashboardNavState
-  ) {}
-
-  hasPermission(module: 'proyectos' | 'cms' | 'ciberseguridad'): boolean {
-    return this.authService.hasPermission(module);
+  ) {
+    // Cargar módulos disponibles según privilegios
+    this.modules = this.privilegesService.getAvailableModules();
   }
 }

@@ -1,15 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ProyectoNavState } from '../services/proyecto-nav-state';
-import { AuthService } from '../../../services/auth.service';
-import { filter } from 'rxjs/operators';
-
-interface Proyecto {
-  id: string;
-  nombre: string;
-  icon: string;
-}
+import { PrivilegesService } from '../../../services/privileges';
+import { ProjectPrivilege } from '../../../models/privileges.model';
 
 @Component({
   selector: 'app-proyecto-nav',
@@ -17,47 +11,26 @@ interface Proyecto {
   templateUrl: './proyecto-nav.html',
   styleUrls: ['./proyecto-nav.css']
 })
-export class ProyectoNav {
+export class ProyectoNav implements OnInit {
   isHeaderHovered = false;
   hoveredProyecto: string | null = null;
   isCollapsed;
   
-  todosLosProyectos: Proyecto[] = [
-    { id: 'web-corporativa', nombre: 'Web Corporativa', icon: 'fas fa-globe' },
-    { id: 'app-mobile', nombre: 'App Mobile', icon: 'fas fa-mobile-alt' },
-    { id: 'ecommerce', nombre: 'E-Commerce', icon: 'fas fa-shopping-cart' },
-    { id: 'crm-interno', nombre: 'CRM Interno', icon: 'fas fa-users-cog' }
-  ];
-  
-  proyectos: Proyecto[] = [];
+  proyectos: ProjectPrivilege[] = [];
   
   constructor(
     public navState: ProyectoNavState,
-    private router: Router,
-    private authService: AuthService
+    private privilegesService: PrivilegesService,
+    private router: Router
   ) {
     // Inicializar isCollapsed
     this.isCollapsed = this.navState.isCollapsed;
     
-    // Filtrar proyectos según usuario
-    const user = this.authService.currentUser();
-    const proyectosAsignados = user?.proyectosAsignados || [];
-    
-    this.proyectos = this.todosLosProyectos.filter(p => 
-      proyectosAsignados.includes(p.id)
-    );
-    
-    // Auto-collapse desactivado - se maneja manualmente con botón toggle
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe((event: any) => {
-    //   const url = event.url;
-    //   const isProyectoDetalle = this.proyectos.some(p => url.includes(`/proyectos/${p.id}`));
-    //   if (isProyectoDetalle) {
-    //     this.navState.collapse();
-    //   }
-    // });
+    // Cargar proyectos disponibles según privilegios
+    this.proyectos = this.privilegesService.getAvailableProjects();
   }
+  
+  ngOnInit(): void {}
   
   onProyectoClick(): void {
     // El auto-collapse se maneja en el router subscription

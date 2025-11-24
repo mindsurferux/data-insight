@@ -30,11 +30,11 @@
        [routerLink]="['/dashboard/proyectos', proyecto.id]"
        routerLinkActive="tab-active"
        [class.tab-hover]="hoveredProyecto === proyecto.id"
-       [attr.title]="isCollapsed() ? proyecto.nombre : ''"
+       [attr.title]="isCollapsed() ? proyecto.name : ''"
        (mouseenter)="hoveredProyecto = proyecto.id"
        (mouseleave)="hoveredProyecto = null">
       <i [class]="proyecto.icon"></i>
-      <span *ngIf="!isCollapsed()">{{ proyecto.nombre }}</span>
+      <span *ngIf="!isCollapsed()">{{ proyecto.name }}</span>
       <div class="tab-indicator"></div>
     </a>
   </div>

@@ -5,42 +5,16 @@
   </div>
   
   <div class="nav-tabs">
-    <a *ngIf="hasPermission('proyectos')"
-       routerLink="/dashboard/proyectos"
+    <a *ngFor="let module of modules"
+       [routerLink]="['/dashboard', module.id]"
        routerLinkActive="active"
        class="nav-tab"
-       [class.active-hover]="isHovered === 'proyectos'"
-       [attr.title]="navState.isCollapsed() ? 'Proyectos' : ''"
-       (mouseenter)="isHovered = 'proyectos'"
+       [class.active-hover]="isHovered === module.id"
+       [attr.title]="navState.isCollapsed() ? module.name : ''"
+       (mouseenter)="isHovered = module.id"
        (mouseleave)="isHovered = null">
-      <i class="fas fa-project-diagram"></i>
-      <span *ngIf="!navState.isCollapsed()">Proyectos</span>
-      <div class="tab-indicator"></div>
-    </a>
-    
-    <a *ngIf="hasPermission('cms')"
-       routerLink="/dashboard/cms"
-       routerLinkActive="active"
-       class="nav-tab"
-       [class.active-hover]="isHovered === 'cms'"
-       [attr.title]="navState.isCollapsed() ? 'CMS' : ''"
-       (mouseenter)="isHovered = 'cms'"
-       (mouseleave)="isHovered = null">
-      <i class="fas fa-edit"></i>
-      <span *ngIf="!navState.isCollapsed()">CMS</span>
-      <div class="tab-indicator"></div>
-    </a>
-    
-    <a *ngIf="hasPermission('ciberseguridad')"
-       routerLink="/dashboard/ciberseguridad"
-       routerLinkActive="active"
-       class="nav-tab"
-       [class.active-hover]="isHovered === 'ciberseguridad'"
-       [attr.title]="navState.isCollapsed() ? 'Ciberseguridad' : ''"
-       (mouseenter)="isHovered = 'ciberseguridad'"
-       (mouseleave)="isHovered = null">
-      <i class="fas fa-shield-alt"></i>
-      <span *ngIf="!navState.isCollapsed()">Ciberseguridad</span>
+      <i [class]="module.icon"></i>
+      <span *ngIf="!navState.isCollapsed()">{{ module.name }}</span>
       <div class="tab-indicator"></div>
     </a>
   </div>

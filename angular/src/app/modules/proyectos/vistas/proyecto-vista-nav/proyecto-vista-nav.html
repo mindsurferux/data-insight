@@ -1,15 +1,41 @@
 <div class="vista-nav-container" [class.collapsed]="isCollapsed()">
+  <!-- Header del Proyecto (Clickeable) -->
+  <div class="project-header" 
+       [routerLink]="['resumen']"
+       routerLinkActive="header-active"
+       [routerLinkActiveOptions]="{exact: true}"
+       [class.header-hover]="isHeaderHovered"
+       (mouseenter)="isHeaderHovered = true"
+       (mouseleave)="isHeaderHovered = false"
+       [attr.title]="isCollapsed() ? projectName : ''">
+    <div class="header-icon">
+      <i [class]="projectIcon"></i>
+    </div>
+    <div class="header-content" *ngIf="!isCollapsed()">
+      <h3>{{ projectName }}</h3>
+    </div>
+    <div class="header-indicator" *ngIf="!isCollapsed()">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+  
+  <!-- Tabs de Vistas -->
   <div class="vistas-list">
+    <div class="tabs-label" *ngIf="!isCollapsed()">
+      <i class="fas fa-eye"></i>
+      <span>VISTAS</span>
+    </div>
+    
     <a class="vista-tab"
        *ngFor="let vista of vistas"
        [routerLink]="vista.id"
        routerLinkActive="tab-active"
        [class.tab-hover]="hoveredVista === vista.id"
-       [attr.title]="isCollapsed() ? vista.nombre : ''"
+       [attr.title]="isCollapsed() ? vista.name : ''"
        (mouseenter)="hoveredVista = vista.id"
        (mouseleave)="hoveredVista = null">
       <i [class]="vista.icon"></i>
-      <span *ngIf="!isCollapsed()">{{ vista.nombre }}</span>
+      <span *ngIf="!isCollapsed()">{{ vista.name }}</span>
       <div class="tab-indicator"></div>
     </a>
   </div>

@@ -1,14 +1,14 @@
 .login-container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(90vh - 100px);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .login-box {
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
 }
 
 .login-card {
@@ -21,50 +21,52 @@
 
 .login-header {
   background-color: var(--bg-tertiary);
-  padding: 2rem;
+  padding: 1.25rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
 }
 
 .login-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
   letter-spacing: 2px;
 }
 
 .login-header p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .login-content {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .login-subtitle {
   text-align: center;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
 }
 
 .user-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .user-btn {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
   background-color: var(--bg-tertiary);
   border: 2px solid var(--border-color);
   border-radius: 8px;
   transition: all 0.3s ease;
-  text-align: left;
+  text-align: center;
 }
 
 .user-btn:hover {
@@ -75,14 +77,14 @@
 }
 
 .user-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: var(--bg-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
   flex-shrink: 0;
 }
@@ -92,40 +94,41 @@
 }
 
 .user-info h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   margin-bottom: 0.25rem;
   color: var(--text-primary);
 }
 
 .user-info p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
 }
 
 .badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
 }
 
 .dev-notice {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .dev-notice i {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--accent-color);
 }

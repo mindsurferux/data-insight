@@ -1,6 +1,6 @@
 .dashboard-container {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   background-color: var(--bg-primary);
   overflow: hidden;
