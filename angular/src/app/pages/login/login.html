@@ -17,7 +17,7 @@
             <div class="user-info">
               <h3>Luis</h3>
               <p>Administrador</p>
-              <span class="badge">Acceso Total</span>
+              <span class="badge badge-stakeholder">Stakeholder</span>
             </div>
           </button>
           
@@ -28,7 +28,18 @@
             <div class="user-info">
               <h3>Ana</h3>
               <p>Editor</p>
-              <span class="badge">Acceso Limitado</span>
+              <span class="badge badge-stakeholder">Stakeholder</span>
+            </div>
+          </button>
+          
+          <button class="user-btn" (click)="loginAs('jorge')">
+            <div class="user-icon">
+              <i class="fas fa-user-cog"></i>
+            </div>
+            <div class="user-info">
+              <h3>Jorge</h3>
+              <p>Desarrollador</p>
+              <span class="badge badge-dev">Dev</span>
             </div>
           </button>
         </div>

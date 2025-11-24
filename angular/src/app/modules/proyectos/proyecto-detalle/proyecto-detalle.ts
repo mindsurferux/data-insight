@@ -23,9 +23,12 @@ export class ProyectoDetalle implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.projectId = params['id'];
+      console.log('ProyectoDetalle - projectId:', this.projectId);
+      
       // Obtener información del proyecto
       const proyectos = this.privilegesService.getAvailableProjects();
       this.proyecto = proyectos.find(p => p.id === this.projectId) || null;
+      console.log('ProyectoDetalle - proyecto encontrado:', this.proyecto);
     });
   }
 }

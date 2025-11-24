@@ -1,12 +1,12 @@
 [build]
   # Directorio de construcción
-  publish = "dist/angular"
-  command = "ng build --configuration production"
+  publish = "dist/angular/browser"
+  command = "npm run build:prod"
 
 [build.environment]
   # Variables de entorno para Angular
-  NODE_VERSION = "18"
-  NPM_VERSION = "9"
+  NODE_VERSION = "20"
+  NPM_VERSION = "10"
 
 # Redirecciones para SPA (Single Page Application)
 [[redirects]]

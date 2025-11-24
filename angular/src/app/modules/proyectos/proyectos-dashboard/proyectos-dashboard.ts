@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ProyectoNav } from '../proyecto-nav/proyecto-nav';
 import { PrivilegesService } from '../../../services/privileges';
+import { NavigationStateService } from '../../../services/navigation-state.service';
 
 @Component({
   selector: 'app-proyectos-dashboard',
@@ -13,8 +14,12 @@ export class ProyectosDashboard {
   
   constructor(
     private privilegesService: PrivilegesService,
+    private navigationStateService: NavigationStateService,
     private router: Router
   ) {
+    // Al cargar el módulo Proyectos, expandir Proyectos y colapsar Módulos
+    this.navigationStateService.onProyectosModuleLoad();
+    
     // Redirect condicional según proyectos asignados
     if (this.router.url === '/dashboard/proyectos') {
       const proyectos = this.privilegesService.getAvailableProjects();
