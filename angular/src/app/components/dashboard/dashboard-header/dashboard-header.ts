@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardNavState } from '../services/dashboard-nav-state';
+import { NavigationStateService } from '../../../services/navigation-state.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,5 +13,13 @@ import { CommonModule } from '@angular/common';
 export class DashboardHeader {
   isHovered = false;
   
-  constructor(public navState: DashboardNavState) {}
+  constructor(
+    public navState: DashboardNavState,
+    private navigationStateService: NavigationStateService
+  ) {}
+
+  onHeaderClick(): void {
+    // Trigger: Expande Dashboard, colapsa Proyectos y Vistas
+    this.navigationStateService.onModuleClick();
+  }
 }

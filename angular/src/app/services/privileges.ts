@@ -169,6 +169,12 @@ export class PrivilegesService {
     return nonResumenView?.id || null;
   }
 
+  // Obtener primer módulo disponible (según order)
+  getFirstModule(): ModulePrivilege | null {
+    const modules = this.getAvailableModules();
+    return modules.length > 0 ? modules[0] : null;
+  }
+
   // Limpiar privilegios (logout)
   clearPrivileges(): void {
     this.currentUserPrivileges.set(null);

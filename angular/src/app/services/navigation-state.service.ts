@@ -72,9 +72,9 @@ export class NavigationStateService {
   }
 
   /**
-   * Click en módulo (nivel 1):
+   * Click en módulo NO-Proyectos (nivel 1):
    * - Expande Dashboard (Módulos)
-   * - Colapsa Proyectos y Vistas (para volver al estado base)
+   * - Colapsa Proyectos y Vistas
    */
   onModuleClick(): void {
     this.dashboardCollapsed.set(false);  // EXPANDE Dashboard
@@ -83,15 +83,15 @@ export class NavigationStateService {
   }
 
   /**
-   * Cargar módulo Proyectos:
-   * - Expande Proyectos (nivel actual)
-   * - COLAPSA Módulos (nivel padre)
-   * - Vistas permanece colapsado hasta que se seleccione un proyecto
+   * Click en módulo Proyectos (nivel 1):
+   * - Expande Dashboard (Módulos)
+   * - Expande Proyectos (hijo)
+   * - Colapsa Vistas
    */
   onProyectosModuleLoad(): void {
-    this.dashboardCollapsed.set(true);   // COLAPSA padre (Módulos)
-    this.proyectosCollapsed.set(false);  // EXPANDE actual (Proyectos)
-    this.vistasCollapsed.set(true);      // Vistas colapsado (hasta seleccionar proyecto)
+    this.dashboardCollapsed.set(false);  // EXPANDE Dashboard (actual)
+    this.proyectosCollapsed.set(false);  // EXPANDE Proyectos (hijo)
+    this.vistasCollapsed.set(true);      // COLAPSA Vistas
   }
 
   /**

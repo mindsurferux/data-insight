@@ -5,6 +5,7 @@
        routerLinkActive="header-active"
        [routerLinkActiveOptions]="{exact: true}"
        [class.header-hover]="isHeaderHovered"
+       (click)="onViewClick()"
        (mouseenter)="isHeaderHovered = true"
        (mouseleave)="isHeaderHovered = false"
        [attr.title]="isCollapsed() ? projectName : ''">

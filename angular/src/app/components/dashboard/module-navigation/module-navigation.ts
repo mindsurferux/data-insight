@@ -25,8 +25,13 @@ export class ModuleNavigation {
     this.modules = this.privilegesService.getAvailableModules();
   }
 
-  onModuleClick(): void {
-    // Trigger: expande dashboard, colapsa proyectos y vistas
-    this.navigationStateService.onModuleClick();
+  onModuleClick(moduleId: string): void {
+    // Si es el módulo Proyectos, usar trigger especial
+    if (moduleId === 'proyectos') {
+      this.navigationStateService.onProyectosModuleLoad();
+    } else {
+      // Otros módulos: expande dashboard, colapsa proyectos y vistas
+      this.navigationStateService.onModuleClick();
+    }
   }
 }

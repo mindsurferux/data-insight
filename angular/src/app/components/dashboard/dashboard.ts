@@ -37,35 +37,43 @@ export class Dashboard {
 
     // Redirect según privilegios del usuario
     if (this.router.url === '/dashboard') {
-      const landingModule = this.privilegesService.getLandingModule();
-      const landingProject = this.privilegesService.getLandingProject();
       const skipModuleResumen = this.privilegesService.shouldSkipModuleResumen();
       const skipProjectResumen = this.privilegesService.shouldSkipProjectResumen();
       
-      if (landingProject && landingModule === 'proyectos') {
-        // Usuario con proyecto específico de aterrizaje
-        if (skipProjectResumen) {
-          // Stakeholder con 1 proyecto: ir a primera vista (no resumen)
-          const firstView = this.privilegesService.getFirstNonResumenView(landingProject);
-          if (firstView) {
-            this.router.navigate(['/dashboard', landingModule, landingProject, firstView]);
+      if (skipModuleResumen) {
+        // STAKEHOLDER: Salta resumen, va al primer módulo disponible
+        const firstModule = this.privilegesService.getFirstModule();
+        
+        if (firstModule && firstModule.id === 'proyectos') {
+          // Si el primer módulo es Proyectos
+          const proyectos = this.privilegesService.getAvailableProjects();
+          
+          if (proyectos.length === 1 && skipProjectResumen) {
+            // Stakeholder con 1 proyecto: ir a primera vista (no resumen)
+            const projectId = proyectos[0].id;
+            const firstView = this.privilegesService.getFirstNonResumenView(projectId);
+            if (firstView) {
+              this.router.navigate(['/dashboard', 'proyectos', projectId, firstView]);
+            } else {
+              this.router.navigate(['/dashboard', 'proyectos', projectId, 'resumen']);
+            }
+          } else if (proyectos.length > 1) {
+            // Múltiples proyectos: ir a reportes
+            this.router.navigate(['/dashboard', 'proyectos', 'reportes']);
           } else {
-            this.router.navigate(['/dashboard', landingModule, landingProject, 'resumen']);
+            // Sin proyectos: ir al módulo
+            this.router.navigate(['/dashboard', 'proyectos']);
           }
+        } else if (firstModule) {
+          // Primer módulo NO es Proyectos: ir al módulo directamente
+          this.router.navigate(['/dashboard', firstModule.id]);
         } else {
-          // Usuario normal: ir a resumen del proyecto o reportes
-          if (landingProject === 'reportes') {
-            this.router.navigate(['/dashboard', landingModule, 'reportes']);
-          } else {
-            this.router.navigate(['/dashboard', landingModule, landingProject, 'resumen']);
-          }
+          // Sin módulos: ir a resumen
+          this.router.navigate(['/dashboard', 'resumen']);
         }
-      } else if (skipModuleResumen && landingModule !== 'proyectos') {
-        // Stakeholder en módulo no-proyectos: cargar módulo directamente
-        this.router.navigate(['/dashboard', landingModule]);
       } else {
-        // Usuario normal: ir al módulo
-        this.router.navigate(['/dashboard', landingModule]);
+        // USUARIO NORMAL (NO stakeholder): Va a vista resumen
+        this.router.navigate(['/dashboard', 'resumen']);
       }
     }
 

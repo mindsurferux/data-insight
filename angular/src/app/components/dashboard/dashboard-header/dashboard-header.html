@@ -3,6 +3,7 @@
      routerLinkActive="header-active"
      [class.header-hover]="isHovered"
      [class.collapsed]="navState.isCollapsed()"
+     (click)="onHeaderClick()"
      (mouseenter)="isHovered = true"
      (mouseleave)="isHovered = false">
   <div class="header-icon">
