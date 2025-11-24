@@ -11,10 +11,18 @@
   border-right: 1px solid var(--border-color);
   flex-shrink: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar colapsado */
+.module-sidebar:has(.proyecto-nav-container.collapsed) {
+  width: 60px;
 }
 
 .module-canvas {
   flex: 1;
   overflow-y: auto;
   background-color: var(--bg-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

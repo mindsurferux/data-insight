@@ -21,7 +21,7 @@ export class AuthService {
    * Login mock - simula autenticación sin backend
    */
   login(username: string): boolean {
-    const user = MOCK_USERS[username.toLowerCase()];
+    const user = MOCK_USERS.find(u => u.name.toLowerCase() === username.toLowerCase());
     
     if (user) {
       this.currentUserSignal.set(user);
@@ -53,6 +53,6 @@ export class AuthService {
    */
   hasPermission(module: 'proyectos' | 'cms' | 'ciberseguridad'): boolean {
     const user = this.currentUser();
-    return user ? user.permissions[module] : false;
+    return user ? user.permissions.includes(module) : false;
   }
 }

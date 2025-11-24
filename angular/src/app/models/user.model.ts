@@ -1,36 +1,28 @@
 export interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  role: 'admin' | 'editor' | 'viewer';
-  permissions: {
-    proyectos: boolean;
-    cms: boolean;
-    ciberseguridad: boolean;
-  };
+  role: 'admin' | 'stakeholder' | 'editor' | 'viewer';
+  permissions: string[];
+  proyectosAsignados?: string[]; // IDs de proyectos asignados
 }
 
-export const MOCK_USERS: { [key: string]: User } = {
-  'luis': {
-    id: '1',
+// Mock users para desarrollo
+export const MOCK_USERS: User[] = [
+  {
+    id: 1,
     name: 'Luis',
     email: 'luis@datainsight.com',
     role: 'admin',
-    permissions: {
-      proyectos: true,
-      cms: true,
-      ciberseguridad: true
-    }
+    permissions: ['ciberseguridad', 'proyectos', 'cms'],
+    proyectosAsignados: ['crm-interno'] // Solo 1 proyecto
   },
-  'ana': {
-    id: '2',
+  {
+    id: 2,
     name: 'Ana',
     email: 'ana@datainsight.com',
-    role: 'editor',
-    permissions: {
-      proyectos: true,
-      cms: true,
-      ciberseguridad: false
-    }
+    role: 'stakeholder',
+    permissions: ['proyectos', 'cms'],
+    proyectosAsignados: ['web-corporativa', 'app-mobile', 'ecommerce', 'crm-interno'] // Múltiples proyectos
   }
-};
+];

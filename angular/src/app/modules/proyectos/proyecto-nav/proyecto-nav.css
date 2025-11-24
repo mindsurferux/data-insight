@@ -2,6 +2,32 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modo Colapsado */
+.proyecto-nav-container.collapsed {
+  width: 60px !important;
+}
+
+.proyecto-nav-container.collapsed .module-header {
+  justify-content: center;
+  padding: 1.25rem 0.5rem;
+}
+
+.proyecto-nav-container.collapsed .header-icon {
+  margin: 0;
+}
+
+.proyecto-nav-container.collapsed .proyecto-tab {
+  justify-content: center;
+  padding: 0.875rem 0.5rem;
+  border-left: none;
+}
+
+.proyecto-nav-container.collapsed .proyecto-tab i {
+  margin: 0;
 }
 
 /* Header del Módulo (Clickeable) */
@@ -208,4 +234,65 @@
 
 .proyecto-tab:hover::before {
   width: 100%;
+}
+
+/* Botón Toggle Central */
+.toggle-button {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 48px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  width: 28px;
+}
+
+.toggle-button i {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover i {
+  color: var(--text-primary);
+  transform: scale(1.2);
+}
+
+/* Animación del botón */
+.toggle-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Tooltips en modo colapsado */
+.proyecto-nav-container.collapsed .module-header:hover::after,
+.proyecto-nav-container.collapsed .proyecto-tab:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  margin-left: 12px;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }

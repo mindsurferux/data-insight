@@ -25,6 +25,22 @@ export class Dashboard {
     // Verificar autenticación
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
+      return;
+    }
+
+    // Redirect según rol del usuario
+    const user = this.currentUser();
+    if (user && this.router.url === '/dashboard') {
+      if (user.role === 'stakeholder') {
+        // Ana (stakeholder) → Proyectos
+        this.router.navigate(['/dashboard/proyectos']);
+      } else if (user.role === 'admin') {
+        // Luis (admin) → Ciberseguridad (primer módulo)
+        this.router.navigate(['/dashboard/ciberseguridad']);
+      } else {
+        // Otros → Resumen
+        this.router.navigate(['/dashboard/resumen']);
+      }
     }
 
     // Detectar módulo activo para sincronizar color del canvas
