@@ -1,0 +1,35 @@
+.page-container {
+  min-height: calc(100vh - 200px);
+}
+
+section {
+  padding: 2rem 0;
+}
+
+.catalog-header {
+  padding: 3rem 0;
+}
+
+.wireframe-box {
+  background-color: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  padding: 2rem;
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.filter-box {
+  min-height: 80px;
+  margin-bottom: 2rem;
+}
+
+.wireframe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}

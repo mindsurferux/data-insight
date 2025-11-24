@@ -1,0 +1,36 @@
+.page-container {
+  min-height: calc(100vh - 200px);
+}
+
+section {
+  padding: 3rem 0;
+}
+
+.about-header {
+  padding: 4rem 0;
+}
+
+.wireframe-box {
+  background-color: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  padding: 2rem;
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.wireframe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.team-box {
+  min-height: 250px;
+}
