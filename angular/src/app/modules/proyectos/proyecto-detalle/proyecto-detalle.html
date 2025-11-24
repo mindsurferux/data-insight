@@ -1,61 +1,11 @@
-<div class="proyecto-detalle-container">
-  <div class="proyecto-header">
-    <div class="header-icon">
-      <i [class]="proyectoIcon"></i>
-    </div>
-    <div class="header-info">
-      <h2>{{ proyectoNombre }}</h2>
-      <span class="proyecto-id">ID: {{ proyectoId }}</span>
-    </div>
+<div class="proyecto-detalle-layout">
+  <!-- Sidebar de Vistas -->
+  <div class="vista-sidebar">
+    <app-proyecto-vista-nav></app-proyecto-vista-nav>
   </div>
   
-  <div class="proyecto-content">
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="card-icon">
-          <i class="fas fa-calendar-alt"></i>
-        </div>
-        <div class="card-content">
-          <span class="card-label">Fecha Inicio</span>
-          <span class="card-value">--/--/----</span>
-        </div>
-      </div>
-      
-      <div class="info-card">
-        <div class="card-icon">
-          <i class="fas fa-flag-checkered"></i>
-        </div>
-        <div class="card-content">
-          <span class="card-label">Fecha Entrega</span>
-          <span class="card-value">--/--/----</span>
-        </div>
-      </div>
-      
-      <div class="info-card">
-        <div class="card-icon">
-          <i class="fas fa-percentage"></i>
-        </div>
-        <div class="card-content">
-          <span class="card-label">Progreso</span>
-          <span class="card-value">--%</span>
-        </div>
-      </div>
-      
-      <div class="info-card">
-        <div class="card-icon">
-          <i class="fas fa-user-tie"></i>
-        </div>
-        <div class="card-content">
-          <span class="card-label">Responsable</span>
-          <span class="card-value">--</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="construction-notice">
-      <i class="fas fa-tools"></i>
-      <p>Detalle de Proyecto en Construcción</p>
-      <span>Aquí se mostrará información detallada del proyecto: tareas, equipo, archivos, etc.</span>
-    </div>
+  <!-- Canvas de Vista -->
+  <div class="vista-canvas">
+    <router-outlet></router-outlet>
   </div>
 </div>

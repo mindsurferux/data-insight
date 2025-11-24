@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Signal } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ModuleNavigation } from './module-navigation/module-navigation';
-import { DashboardHeader } from './dashboard-header/dashboard-header';
+import { User } from '../../models/user.model';
+import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { DashboardHeader } from './dashboard-header/dashboard-header';
+import { ModuleNavigation } from './module-navigation/module-navigation';
+import { DashboardNavState } from './services/dashboard-nav-state';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, RouterModule, ModuleNavigation, DashboardHeader],
+  imports: [CommonModule, RouterModule, DashboardHeader, ModuleNavigation],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
 export class Dashboard {
-  currentUser;
-  activeModule: string = 'proyectos';
+  currentUser: Signal<User | null>;
+  activeModule: string = '';
+  navState;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    dashboardNavState: DashboardNavState
   ) {
     this.currentUser = this.authService.currentUser;
+    this.navState = dashboardNavState;
     
     // Verificar autenticación
     if (!this.authService.isAuthenticated()) {

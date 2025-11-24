@@ -1,0 +1,78 @@
+.vista-container {
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vista-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.vista-header i {
+  font-size: 1.75rem;
+  color: var(--accent-color);
+}
+
+.vista-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.construction-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  border-radius: 10px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out 0.3s backwards;
+}
+
+.construction-notice i {
+  font-size: 3.5rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.construction-notice p {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem 0;
+}
+
+.construction-notice span {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+}

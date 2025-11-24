@@ -47,17 +47,16 @@ export class ProyectoNav {
       proyectosAsignados.includes(p.id)
     );
     
-    // Auto-collapse cuando se navega a un proyecto hijo
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      const url = event.url;
-      // Si la URL contiene un ID de proyecto (no es /reportes), colapsar
-      const isProyectoDetalle = this.proyectos.some(p => url.includes(`/proyectos/${p.id}`));
-      if (isProyectoDetalle) {
-        this.navState.collapse();
-      }
-    });
+    // Auto-collapse desactivado - se maneja manualmente con botón toggle
+    // this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: any) => {
+    //   const url = event.url;
+    //   const isProyectoDetalle = this.proyectos.some(p => url.includes(`/proyectos/${p.id}`));
+    //   if (isProyectoDetalle) {
+    //     this.navState.collapse();
+    //   }
+    // });
   }
   
   onProyectoClick(): void {

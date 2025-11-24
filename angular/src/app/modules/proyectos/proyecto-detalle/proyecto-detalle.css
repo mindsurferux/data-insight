@@ -1,6 +1,29 @@
-.proyecto-detalle-container {
-  padding: 2rem;
-  animation: fadeIn 0.5s ease-in-out;
+.proyecto-detalle-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.vista-sidebar {
+  width: 200px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vista-sidebar:has(.vista-nav-container.collapsed) {
+  width: 60px;
+}
+
+.vista-canvas {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--bg-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
