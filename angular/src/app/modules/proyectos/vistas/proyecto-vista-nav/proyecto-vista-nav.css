@@ -21,6 +21,11 @@
   margin: 0;
 }
 
+/* Ocultar dot indicator en modo colapsado */
+.vista-nav-container.collapsed .tab-indicator {
+  display: none;
+}
+
 /* Lista de Vistas */
 .vistas-list {
   flex: 1;
@@ -134,45 +139,42 @@
   width: 100%;
 }
 
-/* Botón Toggle */
-.toggle-button {
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
+/* Botón Toggle Bottom */
+.nav-toggle-bottom {
+  width: 100%;
   height: 48px;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 0 6px 6px 0;
+  background-color: #1a1a1a;
+  border: none;
+  border-top: 1px solid var(--border-color);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 10;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: auto;
 }
 
-.toggle-button:hover {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  width: 28px;
+.nav-toggle-bottom:hover {
+  background-color: #252525;
 }
 
-.toggle-button i {
-  font-size: 0.75rem;
+.nav-toggle-bottom i {
+  font-size: 1rem;
   color: var(--text-secondary);
   transition: all 0.3s ease;
 }
 
-.toggle-button:hover i {
+.nav-toggle-bottom:hover i {
   color: var(--text-primary);
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
-.toggle-button:active {
-  transform: translateY(-50%) scale(0.95);
+.nav-toggle-bottom:active {
+  transform: scale(0.98);
+}
+
+.nav-toggle-bottom.collapsed {
+  background-color: #1a1a1a;
 }
 
 /* Tooltips en modo colapsado */

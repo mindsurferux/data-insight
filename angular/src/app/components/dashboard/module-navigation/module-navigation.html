@@ -1,5 +1,5 @@
-<nav class="module-nav-container">
-  <div class="nav-header">
+<nav class="module-nav-container" [class.collapsed]="navState.isCollapsed()">
+  <div class="nav-header" *ngIf="!navState.isCollapsed()">
     <i class="fas fa-th-large"></i>
     <h3>Módulos</h3>
   </div>
@@ -10,10 +10,11 @@
        routerLinkActive="active"
        class="nav-tab"
        [class.active-hover]="isHovered === 'proyectos'"
+       [attr.title]="navState.isCollapsed() ? 'Proyectos' : ''"
        (mouseenter)="isHovered = 'proyectos'"
        (mouseleave)="isHovered = null">
       <i class="fas fa-project-diagram"></i>
-      <span>Proyectos</span>
+      <span *ngIf="!navState.isCollapsed()">Proyectos</span>
       <div class="tab-indicator"></div>
     </a>
     
@@ -22,10 +23,11 @@
        routerLinkActive="active"
        class="nav-tab"
        [class.active-hover]="isHovered === 'cms'"
+       [attr.title]="navState.isCollapsed() ? 'CMS' : ''"
        (mouseenter)="isHovered = 'cms'"
        (mouseleave)="isHovered = null">
       <i class="fas fa-edit"></i>
-      <span>CMS</span>
+      <span *ngIf="!navState.isCollapsed()">CMS</span>
       <div class="tab-indicator"></div>
     </a>
     
@@ -34,10 +36,11 @@
        routerLinkActive="active"
        class="nav-tab"
        [class.active-hover]="isHovered === 'ciberseguridad'"
+       [attr.title]="navState.isCollapsed() ? 'Ciberseguridad' : ''"
        (mouseenter)="isHovered = 'ciberseguridad'"
        (mouseleave)="isHovered = null">
       <i class="fas fa-shield-alt"></i>
-      <span>Ciberseguridad</span>
+      <span *ngIf="!navState.isCollapsed()">Ciberseguridad</span>
       <div class="tab-indicator"></div>
     </a>
   </div>

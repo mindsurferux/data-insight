@@ -2,16 +2,17 @@
      routerLink="/dashboard/resumen"
      routerLinkActive="header-active"
      [class.header-hover]="isHovered"
+     [class.collapsed]="navState.isCollapsed()"
      (mouseenter)="isHovered = true"
      (mouseleave)="isHovered = false">
   <div class="header-icon">
     <i class="fas fa-chart-line"></i>
   </div>
-  <div class="header-content">
+  <div class="header-content" *ngIf="!navState.isCollapsed()">
     <h1>DATA INSIGHT</h1>
     <p>Panel Admin</p>
   </div>
-  <div class="header-indicator">
+  <div class="header-indicator" *ngIf="!navState.isCollapsed()">
     <i class="fas fa-chevron-right"></i>
   </div>
 </div>

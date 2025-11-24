@@ -40,11 +40,12 @@
       </button>
     </div>
     
-    <!-- Botón Toggle -->
-    <button class="sidebar-toggle" 
+    <!-- Botón Toggle Bottom -->
+    <button class="nav-toggle-bottom" 
             (click)="navState.toggle()"
+            [class.collapsed]="navState.isCollapsed()"
             [attr.title]="navState.isCollapsed() ? 'Expandir navegación' : 'Colapsar navegación'">
-      <i class="fas" [class.fa-chevron-right]="navState.isCollapsed()" [class.fa-chevron-left]="!navState.isCollapsed()"></i>
+      <i class="fas" [class.fa-angles-right]="navState.isCollapsed()" [class.fa-angles-left]="!navState.isCollapsed()"></i>
     </button>
   </aside>
   

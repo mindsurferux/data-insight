@@ -1,12 +1,15 @@
 .dashboard-container {
   display: flex;
   height: 100vh;
+  width: 100%;
   background-color: var(--bg-primary);
+  overflow: hidden;
 }
 
 /* Sidebar */
 .sidebar {
   width: 260px;
+  height: 100%;
   background-color: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
   display: flex;
@@ -15,6 +18,7 @@
   position: relative;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .sidebar.collapsed {
@@ -162,33 +166,81 @@
 .footer-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background-color: var(--bg-tertiary);
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: transparent;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
+  text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .footer-btn:hover {
-  background-color: var(--accent-color);
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-color);
   color: var(--text-primary);
 }
 
-/* Main Content */
+.footer-btn i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* Botón Toggle Bottom */
+.nav-toggle-bottom {
+  width: 100%;
+  height: 48px;
+  background-color: #1a1a1a;
+  border: none;
+  border-top: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: auto;
+}
+
+.nav-toggle-bottom:hover {
+  background-color: #252525;
+}
+
+.nav-toggle-bottom i {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.nav-toggle-bottom:hover i {
+  color: var(--text-primary);
+  transform: scale(1.15);
+}
+
+.nav-toggle-bottom:active {
+  transform: scale(0.98);
+}
+
+/* Estado colapsado del botón */
+.nav-toggle-bottom.collapsed {
+  background-color: #1a1a1a;
+}
+
+/* Main Content Area */
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
-  background-color: var(--bg-primary);
 }
 
-/* Barra de Filtros (Inhabilitada) */
 .filters-bar {
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
@@ -229,7 +281,10 @@
 /* Canvas Principal - Color sincronizado con tab activa */
 .content-canvas {
   flex: 1;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: background-color 0.4s ease;
 }
 

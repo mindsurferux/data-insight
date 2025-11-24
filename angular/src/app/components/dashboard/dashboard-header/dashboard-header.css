@@ -117,3 +117,13 @@
 .dashboard-header:active {
   transform: scale(0.98);
 }
+
+/* Estado Colapsado */
+.dashboard-header.collapsed {
+  justify-content: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.dashboard-header.collapsed .header-icon {
+  margin: 0;
+}

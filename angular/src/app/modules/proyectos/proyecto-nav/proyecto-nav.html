@@ -39,10 +39,11 @@
     </a>
   </div>
   
-  <!-- Botón Toggle Central -->
-  <button class="toggle-button" 
+  <!-- Botón Toggle Bottom -->
+  <button class="nav-toggle-bottom" 
           (click)="toggleNav()"
+          [class.collapsed]="isCollapsed()"
           [attr.title]="isCollapsed() ? 'Expandir navegación' : 'Colapsar navegación'">
-    <i class="fas" [class.fa-chevron-right]="isCollapsed()" [class.fa-chevron-left]="!isCollapsed()"></i>
+    <i class="fas" [class.fa-angles-right]="isCollapsed()" [class.fa-angles-left]="!isCollapsed()"></i>
   </button>
 </div>
