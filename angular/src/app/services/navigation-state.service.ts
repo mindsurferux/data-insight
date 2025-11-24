@@ -14,11 +14,16 @@ export class NavigationStateService {
   private dashboardCollapsed = signal<boolean>(false);
   private proyectosCollapsed = signal<boolean>(true);
   private vistasCollapsed = signal<boolean>(true);
+  
+  // Estado de lock: cuando está activo, los triggers no afectan el estado
+  // Solo los botones de toggle pueden cambiar el estado
+  private navigationLocked = signal<boolean>(false);
 
   // Exponer como readonly
   readonly dashboardState = this.dashboardCollapsed.asReadonly();
   readonly proyectosState = this.proyectosCollapsed.asReadonly();
   readonly vistasState = this.vistasCollapsed.asReadonly();
+  readonly lockState = this.navigationLocked.asReadonly();
 
   /**
    * Toggle manual dashboard (botón expandir/colapsar)
@@ -72,11 +77,22 @@ export class NavigationStateService {
   }
 
   /**
+   * Toggle del lock de navegación
+   * Cuando está activo, los triggers no afectan el estado
+   */
+  toggleLock(): void {
+    this.navigationLocked.set(!this.navigationLocked());
+  }
+
+  /**
    * Click en módulo NO-Proyectos (nivel 1):
    * - Expande Dashboard (Módulos)
    * - Colapsa Proyectos y Vistas
+   * RESPETA EL LOCK: Si está bloqueado, no hace nada
    */
   onModuleClick(): void {
+    if (this.navigationLocked()) return; // 🔒 Lock activo, ignorar trigger
+    
     this.dashboardCollapsed.set(false);  // EXPANDE Dashboard
     this.proyectosCollapsed.set(true);   // COLAPSA Proyectos
     this.vistasCollapsed.set(true);      // COLAPSA Vistas
@@ -87,8 +103,11 @@ export class NavigationStateService {
    * - Expande Dashboard (Módulos)
    * - Expande Proyectos (hijo)
    * - Colapsa Vistas
+   * RESPETA EL LOCK: Si está bloqueado, no hace nada
    */
   onProyectosModuleLoad(): void {
+    if (this.navigationLocked()) return; // 🔒 Lock activo, ignorar trigger
+    
     this.dashboardCollapsed.set(false);  // EXPANDE Dashboard (actual)
     this.proyectosCollapsed.set(false);  // EXPANDE Proyectos (hijo)
     this.vistasCollapsed.set(true);      // COLAPSA Vistas
@@ -99,8 +118,11 @@ export class NavigationStateService {
    * - Expande Proyectos (nivel actual)
    * - Expande Vistas (nivel hijo, para mostrar opciones)
    * - COLAPSA Módulos (nivel padre)
+   * RESPETA EL LOCK: Si está bloqueado, no hace nada
    */
   onProjectClick(): void {
+    if (this.navigationLocked()) return; // 🔒 Lock activo, ignorar trigger
+    
     this.dashboardCollapsed.set(true);   // COLAPSA padre (Módulos)
     this.proyectosCollapsed.set(false);  // EXPANDE actual (Proyectos)
     this.vistasCollapsed.set(false);     // EXPANDE hijo (Vistas)
@@ -111,8 +133,11 @@ export class NavigationStateService {
    * - Expande Vistas (nivel actual)
    * - COLAPSA Proyectos (nivel padre)
    * - COLAPSA Módulos (nivel abuelo)
+   * RESPETA EL LOCK: Si está bloqueado, no hace nada
    */
   onViewClick(): void {
+    if (this.navigationLocked()) return; // 🔒 Lock activo, ignorar trigger
+    
     this.dashboardCollapsed.set(true);   // COLAPSA abuelo (Módulos)
     this.proyectosCollapsed.set(true);   // COLAPSA padre (Proyectos)
     this.vistasCollapsed.set(false);     // EXPANDE actual (Vistas)

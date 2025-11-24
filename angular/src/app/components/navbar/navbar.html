@@ -12,7 +12,8 @@
       </ul>
       
       <div class="nav-actions">
-        <button class="btn-login" routerLink="/login">Login</button>
+        <button *ngIf="!authService.isAuthenticated()" class="btn-login" routerLink="/login">Login</button>
+        <button *ngIf="authService.isAuthenticated()" class="btn-login" routerLink="/dashboard">Dashboard</button>
       </div>
     </div>
   </div>

@@ -47,6 +47,36 @@
       </div>
     </div>
     
+    <!-- Bloque de Proyectos -->
+    <div class="projects-section">
+      <div class="section-header">
+        <i class="fas fa-folder-open"></i>
+        <h3>Mis Proyectos</h3>
+      </div>
+      
+      <div class="projects-grid">
+        <div 
+          *ngFor="let proyecto of proyectos" 
+          class="project-card"
+          (click)="navigateToProject(proyecto.id)"
+        >
+          <div class="project-icon">
+            <i [class]="proyecto.icon"></i>
+          </div>
+          <div class="project-info">
+            <h4>{{ proyecto.name }}</h4>
+            <span class="project-status">
+              <i class="fas fa-circle"></i>
+              Activo
+            </span>
+          </div>
+          <div class="project-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="construction-notice">
       <i class="fas fa-tools"></i>
       <p>Vista de Reportes en Construcción</p>

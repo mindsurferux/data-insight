@@ -2,6 +2,7 @@ import { Component, Signal } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { PrivilegesService } from '../../services/privileges';
+import { NavigationStateService } from '../../services/navigation-state.service';
 import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
@@ -24,7 +25,8 @@ export class Dashboard {
     private authService: AuthService,
     private privilegesService: PrivilegesService,
     private router: Router,
-    dashboardNavState: DashboardNavState
+    dashboardNavState: DashboardNavState,
+    public navigationStateService: NavigationStateService
   ) {
     this.currentUser = this.authService.currentUser;
     this.navState = dashboardNavState;
@@ -35,47 +37,56 @@ export class Dashboard {
       return;
     }
 
+    // ============================================================
+    // LÓGICA DE ATERRIZAJE CONDICIONAL - NO FUNCIONA
+    // ============================================================
+    // La lógica de skipModuleResumen y skipProjectResumen no se ejecuta
+    // correctamente en el constructor del Dashboard. El router ya tiene
+    // una ruta asignada cuando se ejecuta este código.
+    // 
+    // TODO: Investigar alternativas:
+    // - Usar guards de routing
+    // - Implementar lógica en el servicio de autenticación
+    // - Usar resolvers de Angular
+    // ============================================================
+    
+    /*
+    // Verificar que privilegios estén cargados
+    const currentPrivileges = this.privilegesService['currentUserPrivileges']();
+    
+    if (!currentPrivileges) {
+      return;
+    }
+
     // Redirect según privilegios del usuario
     if (this.router.url === '/dashboard') {
       const skipModuleResumen = this.privilegesService.shouldSkipModuleResumen();
       const skipProjectResumen = this.privilegesService.shouldSkipProjectResumen();
       
       if (skipModuleResumen) {
-        // STAKEHOLDER: Salta resumen, va al primer módulo disponible
         const firstModule = this.privilegesService.getFirstModule();
         
         if (firstModule && firstModule.id === 'proyectos') {
-          // Si el primer módulo es Proyectos
           const proyectos = this.privilegesService.getAvailableProjects();
           
           if (proyectos.length === 1 && skipProjectResumen) {
-            // Stakeholder con 1 proyecto: ir a primera vista (no resumen)
             const projectId = proyectos[0].id;
-            const firstView = this.privilegesService.getFirstNonResumenView(projectId);
-            if (firstView) {
-              this.router.navigate(['/dashboard', 'proyectos', projectId, firstView]);
-            } else {
-              this.router.navigate(['/dashboard', 'proyectos', projectId, 'resumen']);
-            }
+            this.router.navigate(['/dashboard', 'proyectos', projectId, 'resumen']);
           } else if (proyectos.length > 1) {
-            // Múltiples proyectos: ir a reportes
             this.router.navigate(['/dashboard', 'proyectos', 'reportes']);
           } else {
-            // Sin proyectos: ir al módulo
             this.router.navigate(['/dashboard', 'proyectos']);
           }
         } else if (firstModule) {
-          // Primer módulo NO es Proyectos: ir al módulo directamente
           this.router.navigate(['/dashboard', firstModule.id]);
         } else {
-          // Sin módulos: ir a resumen
           this.router.navigate(['/dashboard', 'resumen']);
         }
       } else {
-        // USUARIO NORMAL (NO stakeholder): Va a vista resumen
         this.router.navigate(['/dashboard', 'resumen']);
       }
     }
+    */
 
     // Detectar módulo activo para sincronizar color del canvas
     this.router.events.pipe(
@@ -98,5 +109,9 @@ export class Dashboard {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
       this.authService.logout();
     }
+  }
+
+  toggleNavigationLock(): void {
+    this.navigationStateService.toggleLock();
   }
 }

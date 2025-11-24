@@ -51,6 +51,14 @@
       </button>
     </div>
     
+    <!-- Botón Lock (Candado) -->
+    <button class="nav-lock-btn" 
+            (click)="toggleNavigationLock()"
+            [class.locked]="navigationStateService.lockState()"
+            [attr.title]="navigationStateService.lockState() ? 'Desbloquear triggers de navegación' : 'Bloquear triggers de navegación'">
+      <i class="fas" [class.fa-lock]="navigationStateService.lockState()" [class.fa-lock-open]="!navigationStateService.lockState()"></i>
+    </button>
+    
     <!-- Botón Toggle Bottom -->
     <button class="nav-toggle-bottom" 
             (click)="navState.toggle()"
