@@ -79,7 +79,6 @@ Este proyecto está en fase inicial con wireframes conceptuales. Los componentes
 
 ---
 
-**Versión:** 0.1.0  
-**Última actualización:** Noviembre 2024
-
-set
+**Versión:** 0.2.0-flow  
+**Última actualización:** Noviembre 2024  
+**Rama:** flow - Desarrollo de flujos de navegación
