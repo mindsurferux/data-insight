@@ -81,3 +81,5 @@ Este proyecto está en fase inicial con wireframes conceptuales. Los componentes
 
 **Versión:** 0.1.0  
 **Última actualización:** Noviembre 2024
+
+set
